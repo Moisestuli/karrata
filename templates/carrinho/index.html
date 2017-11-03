@@ -1,0 +1,20 @@
+
+{% extends "padrao/base.html" %}
+<!---
+      Block do titulo
+      ------------------------------------------------------------>
+{% block title %}
+   Pagina principal
+{% endblock %}
+
+<!---
+      Block do content
+      ------------------------------------------------------------>
+{% block content %}
+
+  <div class="produtos">
+      <h3>Carrinho de compra</h3>
+
+       <p>Total de produtos no carrinho: {{ cart_item_count }}</p>
+  </div><!-- ./ welcome -->
+{% endblock %}

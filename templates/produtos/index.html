@@ -1,0 +1,179 @@
+
+{% extends "padrao/base.html" %}
+<!---
+      Block do titulo
+      ------------------------------------------------------------>
+{% block title %}
+   vender produtos
+{% endblock %}
+
+<!---
+      Block do content
+      ------------------------------------------------------------>
+{% block content %}
+
+  <div class="add">
+    <button type="button" class="btn btn-primary" title="Adiciona novo produto" data-toggle="modal" data-target="#myModal">
+      <i class="fa fa-plus"></i>
+    </button>
+  </div>
+  <div class="hora">
+    <ul class="list-inline" id="houres">
+								<li><span class="hours">00</span><p class="hours_text">Hora</p></li>
+								<li class="seperator">:</li>
+								<li><span class="minutes">00</span><p class="minutes_text">Minutos</p></li>
+								<li class="seperator">:</li>
+								<li><span class="seconds">00</span><p class="seconds_text">Segundo</p></li>
+							</ul>
+							<div class="clearfix"> </div>
+							<script type="text/javascript" src="js/jquery.countdown.min.js"></script>
+							<script type="text/javascript">
+								$('#houres').countdown({
+									date: '12/24/2020 18:59:59',
+									offset: -8,
+									day: 'Day',
+									days: 'Days'
+								}, function () {
+									alert('Done!');
+								});
+							</script>
+
+  </div><!-- hora -->
+  <div class="clearfix"></div>
+
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+         <h4 class="modal-title" id="myModalLabel">Cadastrar Novo Produto</h4>
+       </div>
+       <div class="mdal-body">
+         <h3>cadastrar Produtos</h3>
+        <form action="/produto/todos/" method="post">{% csrf_token %}
+            <div>{{ form.as_p }}</div>
+            <input type="submit" value="cadastrar">
+        </form>
+       </div>
+     </div>
+   </div>
+ </div>
+<!-- modal -->
+
+<div class="container">
+ <div class="container-left tudo">
+   <div class="produtos-recentes">
+     <div class="cabeca">
+       <p><i class="fa fa-leaf"></i> Produtos Recentes</p>
+     </div><!-- cabeca -->
+    <div class="corpo owl-carousel owl-theme">
+      <div class="produtos item">
+        <div class="produto-header">
+          <img src="/static/img/g2.jpg" with="100" height="100" />
+        </div>
+        <div class="produto-body">
+          <p>descricao do produto muito bom</p>
+
+          <button class="btn btn-primary compra"><i class="fa fa-send"></i> Comprar</button>
+        </div>
+      </div><!-- produto -->
+
+      <div class="produtos item">
+        <div class="produto-header">
+          <img src="/static/img/g3.jpg" with="100" height="100" />
+        </div>
+        <div class="produto-body">
+          <p>descricao do produto muito bom</p>
+          <button class="btn btn-primary compra"><i class="fa fa-send"></i> Comprar</button>
+        </div>
+      </div><!-- produto -->
+
+      <div class="produtos item">
+        <div class="produto-header">
+          <img src="/static/img/g4.jpg" with="100" height="100" />
+        </div>
+        <div class="produto-body">
+          <p>descricao do produto muito bom</p>
+          <button class="btn btn-primary compra"><i class="fa fa-send"></i> Comprar</button>
+        </div>
+      </div><!-- produto -->
+
+      <div class="produtos item">
+        <div class="produto-header">
+          <img src="/static/img/g5.jpg" with="100" height="100" />
+        </div>
+        <div class="produto-body">
+          <p>descricao do produto muito bom</p>
+          <button class="btn btn-primary compra"><i class="fa fa-send"></i> Comprar</button>
+        </div>
+      </div><!-- produto -->
+
+      <div class="produtos item">
+        <div class="produto-header">
+          <img src="/static/img/g2.jpg" with="100" height="100" />
+        </div>
+        <div class="produto-body">
+          <p>descricao do produto muito bom</p>
+          <button class="btn btn-primary compra"><i class="fa fa-send"></i> Comprar</button>
+        </div>
+      </div><!-- produto -->
+    </div><!-- corpo -->
+   </div><!-- produtos-recentes -->
+   <div class="clearfix"></div>
+   <div class="produtos-dispuniveis">
+     <div class="dispunivel-cabeca">
+       <h3><i class="fa fa-shopping-cart"></i> Produtos Dispuniveis</h3>
+     </div><div class="limpa"></div>
+     <div class="dispunivel-corpo">
+      {% if produtos %}
+           {% for p in produtos %}
+            <div class="produto">
+             <img src="/static/img/g1.jpg" width="50" height="100" alt="">
+
+
+               <p>Nome produto </p><i class="pull-right olho fa fa-eye"></i>
+               <p>preco: 12 kz</p>
+               <button class="btn btn-success"><i class="fa fa-send"></i> Compra</button>
+           </div>
+           {% endfor %}
+           <ul class="pager">
+              <li><a href="#">Previous</a></li>
+              <li><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+              <li><a href="#">Next</a></li>
+          </ul>
+        {% endif %}
+        
+        
+     </div><div class="clearfix"></div>
+   </div><!-- ./ dispuniveis -->
+ </div>
+ <div class="container-rigth tudo">
+   <div class="categ">
+     <div class="comprado-cabeca">
+     <p><i class="fa fa-gear"></i> Categorias</p>
+   </div><!-- cabeca -->
+   <div class="comprado-corpo">
+    <ul class="categoria">
+      <li><a href="#" >categoria primeira</a> <i class="badge"> 12</i></li>
+      <li><a href="#" >categoria primeira</a> <i class="badge"> 12</i></li>
+      <li><a href="#" >categoria primeira</a> <i class="badge"> 12</i></li>
+      <li><a href="#" >categoria primeira</a> <i class="badge"> 12</i></li>
+    </ul>
+   </div><!-- corpo -->
+   </div><!-- categoria -->
+   <div class="mais-vendido">
+     <div class="vendido-cabeca">
+       <p><i class="fa fa-thumbs-up"></i> Mais Vendidos</p>
+     </div>
+     <div class="vendido-corpo">
+      
+     </div><!-- vendido-corpo -->
+   </div><!-- mais-vendidos -->
+ </div><!-- container-rigth -->
+</div>
+{% endblock %}

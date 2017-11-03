@@ -1,0 +1,35 @@
+{% extends "padrao/base.html" %}
+<!---
+      Block do titulo
+      ------------------------------------------------------------>
+{% block title %}
+   Pagina principal
+{% endblock %}
+
+<!---
+      Block do content
+      ------------------------------------------------------------>
+{% block content %}
+    <div class="add-func">
+        {% if form.errors %}
+		    <p class="error">Sorry something was bad try again.</p>
+        {% endif %}
+        <div class="double form-func">
+            <form action="/admin/fornecedor/" method="post">{% csrf_token %}
+                <div><input type="text" name="nome" value="{{ funcionario.username }}" /></div>
+
+                <div><input type="text" name="telefone" value="{{ funcionario.email }}" /></div>
+
+                <div><input type="text" name="senha1" placeholder="Informe a senha antiga " /></div>
+                <div><input type="text" name="senha2" placeholder="Informe a nova senha " /></div>
+                <div><input type="submit" value="Actualizar"></div>
+            </form>
+        </div><!-- ./ form-func -->
+        <div class="double extra-func">
+            <p>Lista do funcionarios</p>
+            {% if funcionario %}
+
+            {% endif %}
+        </div><!-- ./ form-func -->
+    </div><!-- ./ add-func ->
+{% endblock %}

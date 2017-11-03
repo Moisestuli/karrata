@@ -1,0 +1,43 @@
+
+{% extends "padrao/base.html" %}
+<!---
+      Block do titulo
+      ------------------------------------------------------------>
+{% block title %}
+   Pagina principal
+{% endblock %}
+
+<!---
+      Block do content
+      ------------------------------------------------------------>
+{% block content %}
+
+  <div class="produtos">
+        {% if not tem %}
+        <table>
+            <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Total Preco</th>
+                <th>Troco</th>
+                <th>Comprar</th>
+            </tr>
+            {% for item in cart %}
+            <tr>
+                <td> | {{ item.product.nome }}  </td>
+                <td> | {{ item.quantity }} | </td>
+                <td> | {{ item.total_price }} | </td>
+                <td> | {{ item.exchange_now }} | </td>
+                <td><a href="/carrinho/remover/{{ item.product.id }}">remover</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+      {% else %}
+        <h4>Nao temos nada no carrinho</h4>
+      {% endif %}
+      <br>
+      <br>
+      <br>
+      <a href="/carrinho/comprar/">Faturar agora?</a>
+  </div><!-- ./ welcome -->
+{% endblock %}

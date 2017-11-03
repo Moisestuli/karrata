@@ -1,0 +1,15 @@
+.welcome {
+    width: 600px;
+    margin: 90px auto;
+    border: 1px solid #ccc;
+}
+.welcome h4 {
+    text-align: center;
+}
+.welcome .panel {
+    width: 200px;
+    margin: 20px auto;
+}
+.welcome .panel div {
+    padding-bottom: 8px;
+}

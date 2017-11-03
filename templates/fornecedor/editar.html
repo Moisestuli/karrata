@@ -1,0 +1,42 @@
+{% extends "padrao/base.html" %}
+<!---
+      Block do titulo
+      ------------------------------------------------------------>
+{% block title %}
+   Pagina principal
+{% endblock %}
+
+<!---
+      Block do content
+      ------------------------------------------------------------>
+{% block content %}
+    <div class="add-func">
+        {% if form.errors %}
+		    <p class="error">Sorry something was bad try again.</p>
+        {% endif %}
+        <div class="double form-func">
+            <form action="/fornecedor/actualizar/{{ dados.nome }}/" method="post">{% csrf_token %}
+                <div><input type="text" name="nome" value="{{ dados.nome }}" /></div>
+                <div><input type="text" name="telefone" value="{{ dados.telefone }}" /></div>
+                <div><input type="text" name="cidade" value="{{ dados.cidade }}" /></div>
+                <div><input type="submit" value="Editar"></div>
+            </form>
+        </div><!-- ./ form-func -->
+        <div class="double extra-func">
+            <p>Lista do funcionarios</p>
+            {% if fornecedores %}
+             {% for user in fornecedores %}
+             <ul class="users">
+
+
+                        <li><a href="">{{ user.nome }}  </a> <a href="/admin/editar/{{ user.nome }}/">( Editar )</a>
+                            <a href="/fornecedor/eliminar/{{ user.nome }}/"> ( Eliminar )</a></li>
+
+
+
+              </ul>
+              {% endfor %}
+            {% endif %}
+        </div><!-- ./ form-func -->
+    </div><!-- ./ add-func ->
+{% endblock %}
