@@ -10,35 +10,71 @@
       Block do content
       ------------------------------------------------------------>
 {% block content %}
-    <div class="add-func">
-        {% if form.errors %}
-		    <p class="error">Sorry something was bad try again.</p>
-        {% endif %}
-        <div class="double form-func">
-            <form action="/admin/fornecedor/" method="post">{% csrf_token %}
-                <div><input type="text" name="nome" placeholder="Nome do forncedor " /></div>
+ <div class="row">
+  <div class="col-md-6">
+    <div class="form">
+      <form role="form">
+        <div class="form-group">
+          <label for="name">Nome do Funcionario</label>
+          <input type="text" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="name">Email do Funcionario</label>
+          <input type="text" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="name">Telefone do Funcionario</label>
+          <input type="text" class="form-control">
+        </div>
+        <div class="radio">
+          <label>Admin <input type="radio"></label>
+          <label>Funcionario <input type="radio"></label>
+        </div>
+        <div class="form-group">
+          <label for="name">Senha do Funcionario</label>
+          <input type="password" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="inputfile">Imagem Do Perfil</label>
+          <input type="file" id="inputfile">
+        </div>
 
-                <div><input type="text" name="telefone" placeholder="Telefone do forncedor " /></div>
 
-                <div><input type="text" name="cidade" placeholder="Cidade do forncedor " /></div>
-                <div><input type="submit" value="Criar"></div>
-            </form>
-        </div><!-- ./ form-func -->
-        <div class="double extra-func">
-            <p>Lista do funcionarios</p>
-            {% if fornecedores %}
-             {% for user in fornecedores %}
-             <ul class="users">
+        <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Cadastrar</button>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-6 list-func">
+    <h2>Fornecedroes Activos</h2>
 
+    <div class="funcionarios">
+      <div class="profile">
+        <img src="/static/img/2.png" class="img-circle" width="100" height="100" />
+        <p><a href="#">Jose Tandavala</a></p>
+         <i class="badge">Vendeu 12</i>
 
-                        <li><a href="">{{ user.nome }}  </a> <a href="/fornecedor/editar/{{ user.nome }}/">( Editar )</a>
-                            <a href="/fornecedor/eliminar/{{ user.nome }}/"> ( Eliminar )</a></li>
+         <a class="fa fa-edit"></a>
+      </div>
+      <div class="profile">
+        <img src="/static/img/1.png" class="img-circle" width="100" height="100" />
+        <p><a href="#">Jose Tandavala</a></p>
+         <i class="badge">Vendeu 12</i>
+         <a class="fa fa-edit"></a>
+      </div>
+      <div class="profile">
+        <img src="/static/img/2.png" class="img-circle" width="100" height="100" />
+        <p><a href="#">Jose Tandavala</a></p>
+         <i class="badge">Vendeu 12</i>
 
-
-
-              </ul>
-              {% endfor %}
-            {% endif %}
-        </div><!-- ./ form-func -->
-    </div><!-- ./ add-func ->
+         <a class="fa fa-edit"></a>
+      </div>
+      <div class="profile">
+        <img src="/static/img/1.png" class="img-circle" width="100" height="100" />
+        <p><a href="#">Jose Tandavala</a></p>
+         <i class="badge">Vendeu 12</i>
+         <a class="fa fa-edit"></a>
+      </div>
+    </div><!-- ./ funcionarios -->
+  </div>
+ </div>
 {% endblock %}
