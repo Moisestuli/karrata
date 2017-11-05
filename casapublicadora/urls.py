@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^admin/', include('administrador.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^fornecedor/', include('fornecedor.urls')),
+    url(r'^relatorios/', include('relatorios.urls')),
 ]

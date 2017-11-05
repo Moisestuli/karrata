@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'fornecedor',
     'vender',
     'carrinho',
+    'relatorios',
 
 ]
 
