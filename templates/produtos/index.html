@@ -39,6 +39,12 @@
 							</script>
 
   </div><!-- hora -->
+
+  <div class="encomenda pull-right">
+    <button type="button" class="btn btn-danger" title="encomendar produto" data-toggle="modal" data-target="#myModal">
+      <i class="fa fa-plus"></i>
+    </button>
+  </div>
   <div class="clearfix"></div>
 
  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
@@ -132,10 +138,12 @@
              <img src="/static/img/g1.jpg" width="50" height="100" alt="">
 
 
-               <p>Nome produto </p><i class="pull-right olho fa fa-eye"></i>
+               <p>{{ p.nome }}</p><a href="/produto/single/{{ p.slug }}"><i class="pull-right olho fa fa-eye"></i></a>
                <p>preco: 12 kz</p>
                <button class="btn btn-success"><i class="fa fa-send"></i> Compra</button>
+
            </div>
+
            {% endfor %}
            <ul class="pager">
               <li><a href="#">Previous</a></li>
@@ -147,8 +155,8 @@
               <li><a href="#">Next</a></li>
           </ul>
         {% endif %}
-        
-        
+
+
      </div><div class="clearfix"></div>
    </div><!-- ./ dispuniveis -->
  </div>
@@ -159,19 +167,18 @@
    </div><!-- cabeca -->
    <div class="comprado-corpo">
     <ul class="categoria">
-      <li><a href="#" >categoria primeira</a> <i class="badge"> 12</i></li>
-      <li><a href="#" >categoria primeira</a> <i class="badge"> 12</i></li>
-      <li><a href="#" >categoria primeira</a> <i class="badge"> 12</i></li>
-      <li><a href="#" >categoria primeira</a> <i class="badge"> 12</i></li>
+      {% for each in categorias %}
+      <li><a href="#" >{{ each.nome }}</a> <i class="badge"> 12</i></li>
+      {% endfor %}
     </ul>
    </div><!-- corpo -->
    </div><!-- categoria -->
    <div class="mais-vendido">
      <div class="vendido-cabeca">
-       <p><i class="fa fa-thumbs-up"></i> Mais Vendidos</p>
+       <p><i class="fa fa-shopping-cart"></i> Encomendas</p>
      </div>
      <div class="vendido-corpo">
-      
+
      </div><!-- vendido-corpo -->
    </div><!-- mais-vendidos -->
  </div><!-- container-rigth -->

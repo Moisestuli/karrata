@@ -4,6 +4,7 @@ from produtos.forms import ProdutoAdminForm
 from django.template.context_processors import csrf
 from produtos.models import Produto
 from carrinho.cart import Cart
+from category.models import Category
 
 def todos_produtos(request):
 
@@ -19,6 +20,7 @@ def todos_produtos(request):
     args['form'] = ProdutoAdminForm
     args['user'] = request.user
     args['produtos'] = Produto.objects.all()
+    args['categorias'] = Category.objects.all()
 
     return render( request, 'produtos/index.html', args )
 

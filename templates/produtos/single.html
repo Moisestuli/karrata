@@ -1,79 +1,62 @@
-
 {% extends "padrao/base.html" %}
 <!---
       Block do titulo
       ------------------------------------------------------------>
 {% block title %}
-   produtos single
+   Pagina principal
 {% endblock %}
 
 <!---
       Block do content
       ------------------------------------------------------------>
 {% block content %}
- <div class="container">
-   <div class="row-fluid">
-     <div class="span6">
-       <div class="single">
-         <div class="single-header">
-           <p>Single Header</p>
-         </div>
-         <div class="single-body">
-          <img src="/static/img/g2.jpg" with="100" height="100" alt="">
-         </div><!-- single-body -->
-       </div><!-- single -->
-     </div>
-     <div class="span6">
-
-         <div class="cart">
-           <div class="cart-header">
-             <h3>Carrinho De Compra</h3>
-             <form class="form" action="/produto/vender/{{ produto.slug }}" method="post">
-               <input type="text" name="" value="{{ produto.nome }}"> </p>
-               <input type="text" name="preco" value="{{ produto.preco }}"> </p>
-               <input type="text" name="quantity" placeholder="Quatidade: 1" /> </p>
-               <input type="submit" class="btn btn-primary"  value="Adicionar">
-             </form>
-           <hr>
-            <h2> <i class="fa fa-leaf"></i> Categoria do Produto</h2>
+   <div class="row">
+     <div class="col-md-6 col-sm-6">
+       <div class="form">
+         <form role="form">
+           <div class="form-group">
+             <label for="name">Nome do Produto</label>
+             <input type="text" class="form-control" value="{{ produto.nome }}">
+           </div>
+           <div class="form-group">
+             <label for="name">Preco do produto</label>
+             <input type="text" class="form-control" value="{{ produto.preco }}">
+           </div>
+           <div class="form-group">
+             <label for="">Fornecedores</label>
              <ul>
-               {% for categ in categories %}
-                <li><a href="#">{{ categ.nome }}</a></li>
+               {% for each in fornecedores %}
+                <li>{{ each.nome|title }}</li>
                {% endfor %}
              </ul>
-             <h2><i class="fa fa-book"></i> Descricao</h2>
-             <p>Esta e uma pequna descricao deste maravilho produto</p>
+           </div>
 
 
+           <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Actualizar</button>
+           <button type="submit" class="btn btn-danger"><i class="fa fa-delete"></i> Eliminar</button>
+         </form>
+       </div>
+     </div><!-- col-md-6 -->
+     <div class="col-md-6 col-sm-6 produto-single">
+       <div class="container">
+         <div class="img" style="width: 300px; height: 300px;">
+           <div class="thumbnail">
+             <img src="/static/img/g5.jpg" />
+             <div class="caption">
+               <h3>Nome: {{ produto.nome }}</h3>
+               <h3>Preco: {{ produto.preco }} Kz</h3>
+               <h3>No. De Compras: 12</h3>
+               <h3>Categorias: </h3>
+               <ul>
+                 {% for categ in categories %}
+                  <li>{{ categ.nome }}</li>
+                 {% endfor %}
+               </ul>
 
-
-           </div><!-- cart-header -->
-           <div class="cart-body">
-             <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Produto</th>
-                    <th>preco</th>
-                    <th>Quantidade</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    {% for p in cart %}
-                    <td>1</td>
-                    <td>{{ cart.produto }}</td>
-                    <td>{{ cart.preco }}</td>
-                    <td>{{ cart.quantity }}</td>
-                    {% endfor %}
-                  </tr>
-                </tbody>
-              </table>
-           </div><!-- cart-body -->
-         </div><!-- cart -->
-
-     </div>
-   </div><!-- row-fluid -->
- </div><!-- container -->
-
+             </div>
+           </div>
+         </div>
+       </div>
+     </div><div class="limpa"></div><br /><br /><br /><br /><br />
+   </div><!-- ./ row -->
 {% endblock %}
