@@ -41,7 +41,7 @@
   </div><!-- hora -->
 
   <div class="encomenda pull-right">
-    <button type="button" class="btn btn-danger" title="encomendar produto" data-toggle="modal" data-target="#myModal">
+    <button type="button" class="btn btn-danger" title="encomendar produto" data-toggle="modal" data-target="#encoModal">
       <i class="fa fa-plus"></i>
     </button>
   </div>
@@ -66,6 +66,42 @@
    </div>
  </div>
 <!-- modal -->
+<!-- encomenda -->
+<div class="modal fade" id="encoModal" tabindex="-1" role="dialog" aria-labelledby="encoModalLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+        <h4 class="modal-title" id="encoModalLabel">Encomendar Produto</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form">
+          <form role="form">
+            <div class="form-group">
+              <label for="name">Nome do Produto</label>
+              <input type="text" class="form-control" value="{{ produto.nome }}">
+            </div>
+            <div class="form-group">
+              <label for="name">Preco do produto</label>
+              <input type="text" class="form-control" value="{{ produto.preco }}">
+            </div>
+            <div class="form-group">
+              <label for="">Fornecedores</label>
+              <ul>
+                {% for each in fornecedores %}
+                 <li>{{ each.nome|title }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Actualizar</button>
+            <button type="submit" class="btn btn-danger"><i class="fa fa-delete"></i> Eliminar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="container">
  <div class="container-left tudo">
