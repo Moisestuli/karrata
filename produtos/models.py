@@ -8,6 +8,7 @@ class Produto(models.Model):
     nome          = models.CharField(max_length=255, unique=True)
     slug          = models.SlugField(max_length=255, unique=True, blank=True)
     sku           = models.CharField(max_length=50, blank=True)
+    upload        = models.FileField(default="produtos/default.jpg", upload_to='produtos/')
     preco         = models.DecimalField(max_digits=9, decimal_places=2)
     old_preco     = models.DecimalField(max_digits=9, decimal_places=2, blank=True, default=0.0)
     is_active     = models.BooleanField(default=True)

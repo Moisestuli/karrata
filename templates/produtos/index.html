@@ -57,10 +57,12 @@
        </div>
        <div class="mdal-body">
          <h3>cadastrar Produtos</h3>
-        <form action="/produto/todos/" method="post">{% csrf_token %}
-            <div>{{ form.as_p }}</div>
-            <input type="submit" value="cadastrar">
-        </form>
+        <div class="form">
+          <form action="/produto/todos/" method="post" enctype="multipart/form-data">{% csrf_token %}
+              <div class="form-group">{{ form.as_p }}</div>
+              <input type="submit" value="cadastrar">
+          </form>
+        </div>
        </div>
      </div>
    </div>
@@ -83,19 +85,20 @@
               <input type="text" class="form-control" value="{{ produto.nome }}">
             </div>
             <div class="form-group">
-              <label for="name">Preco do produto</label>
+              <label for="name">Cliente</label>
               <input type="text" class="form-control" value="{{ produto.preco }}">
             </div>
             <div class="form-group">
-              <label for="">Fornecedores</label>
+              <label for="">Quantidade</label>
+              <input type="text" class="form-control" value="{{ produto.preco }}">
               <ul>
                 {% for each in fornecedores %}
                  <li>{{ each.nome|title }}</li>
                 {% endfor %}
               </ul>
             </div>
-            <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Actualizar</button>
-            <button type="submit" class="btn btn-danger"><i class="fa fa-delete"></i> Eliminar</button>
+            <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Encomendar</button>
+
           </form>
         </div>
       </div>
@@ -171,8 +174,7 @@
       {% if produtos %}
            {% for p in produtos %}
             <div class="produto">
-             <img src="/static/img/g1.jpg" width="50" height="100" alt="">
-
+              <img src="/media/{{ p.upload }}" width="50" height="100" alt="">
 
                <p>{{ p.nome }}</p><a href="/produto/single/{{ p.slug }}"><i class="pull-right olho fa fa-eye"></i></a>
                <p>preco: 12 kz</p>
@@ -190,6 +192,8 @@
               <li><a href="#">5</a></li>
               <li><a href="#">Next</a></li>
           </ul>
+        {% else %}
+          <p>Nao temos Produtos dispunivel de momento</p>
         {% endif %}
 
 
@@ -214,7 +218,11 @@
        <p><i class="fa fa-shopping-cart"></i> Encomendas</p>
      </div>
      <div class="vendido-corpo">
-
+       <ul>
+         {% for each in encomendas %}
+          <li>{{ each.nome }} <i class="badge">{{ each.quantidade }}</i></li>
+         {% endfor %}
+       </ul>
      </div><!-- vendido-corpo -->
    </div><!-- mais-vendidos -->
  </div><!-- container-rigth -->

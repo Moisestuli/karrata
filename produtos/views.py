@@ -5,11 +5,12 @@ from django.template.context_processors import csrf
 from produtos.models import Produto
 from carrinho.cart import Cart
 from category.models import Category
+from encomenda.models import Encomenda
 
 def todos_produtos(request):
 
     if request.method == 'POST':
-        form = ProdutoAdminForm(request.POST)
+        form = ProdutoAdminForm(request.POST, request.FILES)
 
         if form.is_valid():
             form.save()
@@ -21,6 +22,8 @@ def todos_produtos(request):
     args['user'] = request.user
     args['produtos'] = Produto.objects.all()
     args['categorias'] = Category.objects.all()
+
+    args['encomendas']  =  Encomenda.objects.all()
 
     return render( request, 'produtos/index.html', args )
 

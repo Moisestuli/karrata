@@ -1,3 +1,4 @@
 from django.contrib import admin
+from encomenda.models import Encomenda
 
-# Register your models here.
+admin.site.register(Encomenda)
