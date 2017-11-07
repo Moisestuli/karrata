@@ -166,27 +166,27 @@
               <img src="/media/{{ p.upload }}" width="50" height="100" alt="">
 
                <p>{{ p.nome }}</p><a href="/produto/single/{{ p.slug }}"><i class="pull-right olho fa fa-eye"></i></a>
-               <p>preco: 12 kz</p>
+               <p>preco: {{ p.preco }} kz</p>
                <button class="btn btn-success"><i class="fa fa-send"></i> Compra</button>
 
            </div>
 
            {% endfor %}
-           <ul class="pager">
-              <li><a href="#">Previous</a></li>
-              <li><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
-              <li><a href="#">Next</a></li>
-          </ul>
         {% else %}
           <p>Nao temos Produtos dispunivel de momento</p>
         {% endif %}
 
 
      </div><div class="clearfix"></div>
+     <ul class="pager">
+       {% if produtos.has_previous %}
+        <li><a href="?page={{ produtos.previous_page_number }}">Anterior</a></li>
+       {% endif %}
+        <li>Pagina {{ produtos.number }} de {{ produtos.paginator.num_pages }}</li>
+        {% if produtos.has_next %}
+        <li><a href="?page={{ produtos.next_page_number }}">Proximo</a></li>
+        {% endif %}
+    </ul>
    </div><!-- ./ dispuniveis -->
  </div>
  <div class="container-rigth tudo">

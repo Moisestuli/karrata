@@ -6,6 +6,7 @@ from produtos.models import Produto
 from carrinho.cart import Cart
 from category.models import Category
 from encomenda.models import Encomenda
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def todos_produtos(request):
 
@@ -22,6 +23,17 @@ def todos_produtos(request):
     args['user'] = request.user
     args['produtos'] = Produto.objects.all()
     args['categorias'] = Category.objects.all()
+
+    # paginacao
+    paginacao = Paginator(args['produtos'], 6)
+    page = request.GET.get('page')
+
+    try:
+        args['produtos'] = paginacao.page(page)
+    except PageNotAnInteger:
+        args['produtos'] = paginacao.page(1)
+    except EmptyPage:
+        args['produtos'] = paginacao.page(paginacao.num_pages)
 
     args['encomendas']  =  Encomenda.objects.all()
 
