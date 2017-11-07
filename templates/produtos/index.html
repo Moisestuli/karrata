@@ -1,5 +1,7 @@
 
 {% extends "padrao/base.html" %}
+
+{% load bootstrap %}
 <!---
       Block do titulo
       ------------------------------------------------------------>
@@ -55,12 +57,12 @@
 
          <h4 class="modal-title" id="myModalLabel">Cadastrar Novo Produto</h4>
        </div>
-       <div class="mdal-body">
+       <div class="modal-body">
          <h3>cadastrar Produtos</h3>
         <div class="form">
           <form action="/produto/todos/" method="post" enctype="multipart/form-data">{% csrf_token %}
-              <div class="form-group">{{ form.as_p }}</div>
-              <input type="submit" value="cadastrar">
+              <div class="form-group">{{ form|bootstrap }}</div>
+              <input type="submit" class="btn btn-primary" value="cadastrar">
           </form>
         </div>
        </div>
@@ -79,23 +81,10 @@
       </div>
       <div class="modal-body">
         <div class="form">
-          <form role="form">
+          <form role="form" action="/encomendar/" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="form-group">
-              <label for="name">Nome do Produto</label>
-              <input type="text" class="form-control" value="{{ produto.nome }}">
-            </div>
-            <div class="form-group">
-              <label for="name">Cliente</label>
-              <input type="text" class="form-control" value="{{ produto.preco }}">
-            </div>
-            <div class="form-group">
-              <label for="">Quantidade</label>
-              <input type="text" class="form-control" value="{{ produto.preco }}">
-              <ul>
-                {% for each in fornecedores %}
-                 <li>{{ each.nome|title }}</li>
-                {% endfor %}
-              </ul>
+              {{ formulario }}
             </div>
             <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Encomendar</button>
 
@@ -220,7 +209,7 @@
      <div class="vendido-corpo">
        <ul>
          {% for each in encomendas %}
-          <li>{{ each.nome }} <i class="badge">{{ each.quantidade }}</i></li>
+          <li><a href="/encomendar/ver/{{ each.id }}/">{{ each.nome }}</a> <i class="badge">{{ each.quantidade }}</i></li>
          {% endfor %}
        </ul>
      </div><!-- vendido-corpo -->

@@ -4,4 +4,5 @@ from encomenda.views import *
 
 urlpatterns = (
     url(r'^$', encomendar, name='encomendar'),
+    url(r'^ver/(?P<pk>[-\w]+)/$', encomenda ),
 )

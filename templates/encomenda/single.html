@@ -1,0 +1,58 @@
+{% extends "padrao/base.html" %}
+<!---
+      Block do titulo
+      ------------------------------------------------------------>
+{% block title %}
+   Pagina principal
+{% endblock %}
+
+<!---
+      Block do content
+      ------------------------------------------------------------>
+{% block content %}
+   <div class="row">
+     <div class="col-md-6 col-sm-6">
+       <div class="form">
+         <form role="form">
+           <div class="form-group">
+             <label for="name">Nome do Produto</label>
+             <input type="text" class="form-control" value="{{ encomenda.nome }}">
+           </div>
+           <div class="form-group">
+             <label for="name">Preco do produto</label>
+             <input type="text" class="form-control" value="{{ encomenda.nome.preco }}">
+           </div>
+           <div class="form-group">
+             <label for="name">O Funcionario</label>
+             <input type="text" class="form-control" value="{{  encomenda.funcionario.username }}">
+           </div>
+           <div class="form-group">
+             <label for="">Descricao da encomenda</label>
+             <div class="form-group">
+               <textarea class="form-control" rows="3" cols="80">{{ encomenda.descricao }}</textarea>
+             </div>
+           </div>
+
+
+           <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Notificar cliente</button>
+           <button type="submit" class="btn btn-danger"><i class="fa fa-delete"></i> Eliminar Encomenda</button>
+         </form>
+       </div>
+     </div><!-- col-md-6 -->
+     <div class="col-md-6 col-sm-6 produto-single">
+       <div class="container">
+         <div class="img" style="width: 300px; height: 300px;">
+           <div class="thumbnail">
+
+             <div class="caption">
+               <h3>Nome: {{ encomenda.nome }}</h3>
+               <h3>Preco: {{ encomenda.nome.preco }} Kz</h3>
+               <h3>Quantidade: {{ encomenda.quantidade }}</h3>
+              <h3>O cliente: nome aqui</h3>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div><div class="limpa"></div><br /><br /><br /><br /><br />
+   </div><!-- ./ row -->
+{% endblock %}
