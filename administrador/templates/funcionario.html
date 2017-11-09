@@ -14,7 +14,8 @@
  <div class="row">
   <div class="col-md-6">
     <div class="form">
-      <form role="form" action="/criar-">
+      <form role="form" action="/admin/criar-funcionario/" method="post">
+        {% csrf_token %}
         <div class="form-group">
           {{ form|bootstrap }}
         </div>
