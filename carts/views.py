@@ -3,7 +3,8 @@ from produtos.models import Produto
 from django.http import HttpResponse
 from carts.models import Cart
 from cliente.models import Cliente
-from decimal import Decimal
+from relatorios.models import Relatorio
+
 
 def adiciona_carrinho(request, pk):
 
@@ -15,6 +16,7 @@ def adiciona_carrinho(request, pk):
 def processa_carrinho(request):
 
     cart = Cart()
+    r = Relatorio()
 
 
     if request.method == 'POST':
@@ -28,15 +30,36 @@ def processa_carrinho(request):
         p = get_object_or_404(Produto, pk=pk)
 
         if Cliente.objects.filter(nome=cliente).exists():
+
+                # Pega o cliente ja existente
                 a  = Cliente.objects.get(nome=cliente)
+
+                # Inseri na tabela Carrinho
                 cart.produto = produto
                 cart.quantidade = quantidade
                 cart.preco = p.preco
                 cart.funcionario = request.user.username
                 #cart.funcionario = request.user
                 cart.cliente = cliente
+
+                # Atribui vezes de compras do cliente
                 count = a.compras_realizadas  + 1
                 a.compras_realizadas = count
+
+                # Inseri dados na table relatorios
+                quantidade   = float(quantidade)
+                prc          = float(p.preco)
+                total_vendas = prc * quantidade
+
+                r.produto = produto
+                r.cliente = cliente
+                r.quantidade = quantidade
+                r.preco      = p.preco
+                r.funcionario = request.user.username
+                r.total_vendas = total_vendas
+
+                # Salvamos
+                r.save()
                 a.save()
                 cart.save()
 
@@ -49,6 +72,21 @@ def processa_carrinho(request):
             cart.preco = p.preco
             cart.funcionario = request.user.username
             cart.cliente = cliente
+
+            # Inseri dados na table relatorios
+            quantidade   = float(quantidade)
+            prc          = float(p.preco)
+            total_vendas = prc * quantidade
+
+            r.produto = produto
+            r.cliente = cliente
+            r.quantidade = quantidade
+            r.preco      = p.preco
+            r.funcionario = request.user.username
+            r.total_vendas = total_vendas
+
+            # Salvamos
+            r.save()
             test_cli.save()
         cart.save()
 

@@ -1,3 +1,4 @@
 from django.contrib import admin
+from relatorios.models import Relatorio
 
-# Register your models here.
+admin.site.register(Relatorio)
