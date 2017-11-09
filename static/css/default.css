@@ -289,3 +289,7 @@
   color: #888;
   font-weight: bold;
 }
+.img.logo {
+  border-image: round;
+  border-radius: 5px;
+}
