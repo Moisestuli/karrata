@@ -18,6 +18,9 @@
     <button type="button" class="btn btn-primary" title="Adiciona novo produto" data-toggle="modal" data-target="#myModal">
       <i class="fa fa-plus"></i>
     </button>
+    <a href="/carrinho/ver/" class="btn btn-primary" title="Adiciona novo produto" >
+      <i class="fa fa-shopping-cart"></i>
+    </a>
   </div>
   <div class="hora">
     <ul class="list-inline" id="houres">
@@ -165,7 +168,7 @@
             <div class="produto">
               <img src="/media/{{ p.upload }}" width="50" height="100" alt="">
 
-               <p>{{ p.nome }}</p><a href="/produto/single/{{ p.slug }}"><i class="pull-right olho fa fa-eye"></i></a>
+               <p>{{ p.nome }}</p><a href="/produto/single/{{ p.id }}"><i class="pull-right olho fa fa-eye"></i></a>
                <p>preco: {{ p.preco }} kz</p>
                <a  href="/carrinho/adiciona/{{ p.id }}/" class="btn btn-success btn-venda"><i class="fa fa-send"></i> Vender</a>
 

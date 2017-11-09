@@ -313,3 +313,9 @@
 .row .col-md-6 .form .form-group ul li {
   display: none;
 }
+.container .row .col-md-6 .relatorio {
+  background: #fff;
+  box-shadow: 2px 1px 2px #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}

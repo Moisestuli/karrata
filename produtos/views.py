@@ -42,9 +42,15 @@ def vender_produto(request, produto_slug = None):
 
     return HttpResponse("ver produto")
 
-def produto_single(request, produto_slug = None):
+def produto_single(request, pk = None):
 
-    return HttpResponse("produto single")
+    pk = int(pk)
+    args = {}
+    args['produto'] = get_object_or_404(Produto, pk=pk)
+    p = args['produto']
+    args['categories'] = p.categories.filter(is_active=True)
+    args['fornecedores'] = p.fornecedores.filter(is_active=True)
+    return render(request,"produtos/single.html",args )
 
 def mostra_carrinho(request, pk):
 

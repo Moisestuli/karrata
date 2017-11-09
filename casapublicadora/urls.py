@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^admin/', include('administrador.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^fornecedor/', include('fornecedor.urls')),
+    url(r'^categoria/', include('category.urls')),
     url(r'^relatorios/', include('relatorios.urls')),
     url(r'^encomendar/', include('encomenda.urls')),
     url(r'^clientes/', include('cliente.urls')),

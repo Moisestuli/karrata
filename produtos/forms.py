@@ -6,4 +6,4 @@ class ProdutoAdminForm(forms.ModelForm):
     class Meta:
         model = Produto
         file_now = forms.FileField()
-        fields = ('nome','slug','preco','upload','categories', 'fornecedores')
+        fields = ('nome','preco','upload','categories', 'fornecedores')

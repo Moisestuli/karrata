@@ -6,7 +6,7 @@ from fornecedor.models import Fornecedor
 class Produto(models.Model):
 
     nome          = models.CharField(max_length=255, unique=True)
-    slug          = models.SlugField(max_length=255, unique=True, blank=True)
+    slug          = models.SlugField(max_length=255,default='', blank=True)
     sku           = models.CharField(max_length=50, blank=True)
     upload        = models.FileField(default="produtos/default.jpg", upload_to='produtos/')
     preco         = models.DecimalField(max_digits=9, decimal_places=2)

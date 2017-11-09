@@ -13,35 +13,43 @@
 {% block content %}
 
   <div class="container">
-
-    {% if cart %}
-      <table class="table table-bordered">
-        <caption>Carrinho de compra</caption>
-        <thead>
-          <tr>
-            <th>Produto</th>
-            <th>Cliente</th>
-            <th>Quantidade</th>
-            <th>Preco</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for each in cart %}
-          <tr>
-            <td>{{ each.produto }}</td>
-            <td>{{ each.cliente }}</td>
-            <td>{{ each.quantidade }}</td>
-            <td>{{ each.preco }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      {% else %}
-        <p>nao tem dados ainda</p>
-      {% endif %}
-      <br>
-      <br>
-      <br>
-      <a href="/carrinho/comprar/">Faturar agora?</a>
-  </div><!-- ./ welcome -->
+    <div class="row-now">
+      <div class="funcionario-editar">
+        <h2>Adicionar categoria</h2>
+        {% if cart %}
+          <table class="table table-bordered">
+            <caption>Carrinho de compra</caption>
+            <thead>
+              <tr>
+                <th>Produto</th>
+                <th>Cliente</th>
+                <th>Funcionario</th>
+                <th>Quantidade</th>
+                <th>Preco</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for each in cart %}
+              <tr>
+                <td>{{ each.produto }}</td>
+                <td>{{ each.cliente }}</td>
+                <td>{{ each.funcionario }}</td>
+                <td>{{ each.quantidade }}</td>
+                <td>{{ each.preco }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% else %}
+            <p>Nao tem Item no Carrinho</p>
+          {% endif %}
+          <br>
+          <br>
+          <br>
+          <a href="/carrinho/comprar/" class="btn btn-primary">Faturar agora ?</a>
+          <a href="/produto/todos/" class="btn btn-danger">Voltar ?</a>
+        <div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

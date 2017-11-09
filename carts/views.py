@@ -22,15 +22,17 @@ def processa_carrinho(request):
         produto = request.POST.get('produto')
         cliente = request.POST.get('cliente')
         preco = request.POST.get('preco')
+        pk    = request.POST.get('pk')
         quantidade = request.POST.get('quantidade')
         count      = None
-        price = Decimal(preco)
+        p = get_object_or_404(Produto, pk=pk)
 
         if Cliente.objects.filter(nome=cliente).exists():
                 a  = Cliente.objects.get(nome=cliente)
                 cart.produto = produto
                 cart.quantidade = quantidade
-                cart.preco = preco
+                cart.preco = p.preco
+                cart.funcionario = request.user.username
                 #cart.funcionario = request.user
                 cart.cliente = cliente
                 count = a.compras_realizadas  + 1
@@ -44,8 +46,8 @@ def processa_carrinho(request):
             test_cli.nome = cliente
             cart.produto = produto
             cart.quantidade = quantidade
-            cart.preco = preco
-            #cart.funcionario = request.username
+            cart.preco = p.preco
+            cart.funcionario = request.user.username
             cart.cliente = cliente
             test_cli.save()
         cart.save()
