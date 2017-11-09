@@ -23,37 +23,35 @@
       </form>
     </div>
   </div>
-  <div class="col-md-6 list-func">
-    <h2>Funcionarios Activos</h2>
+  <div class="col-md-6 func-capa">
 
-    <div class="funcionarios">
-      <div class="profile">
-        <img src="/static/img/2.png" class="img-circle" width="100" height="100" />
-        <p><a href="#">Jose Tandavala</a></p>
-         <i class="badge">Vendeu 12</i>
 
-         <a class="fa fa-edit"></a>
-      </div>
-      <div class="profile">
-        <img src="/static/img/1.png" class="img-circle" width="100" height="100" />
-        <p><a href="#">Jose Tandavala</a></p>
-         <i class="badge">Vendeu 12</i>
-         <a class="fa fa-edit"></a>
-      </div>
-      <div class="profile">
-        <img src="/static/img/2.png" class="img-circle" width="100" height="100" />
-        <p><a href="#">Jose Tandavala</a></p>
-         <i class="badge">Vendeu 12</i>
+    <div class="list-func">
+        <h2>Funcionarios Activos</h2>
+      <div class="funcionarios">
+          {% for user in users %}
+            {% if not user.is_superuser %}
+            <div class="profile">
+              <img src="/static/img/2.png" class="img-circle" width="100" height="100" />
+              <p><a href="#">{{ user.username  }}</a></p>
 
-         <a class="fa fa-edit"></a>
-      </div>
-      <div class="profile">
-        <img src="/static/img/1.png" class="img-circle" width="100" height="100" />
-        <p><a href="#">Jose Tandavala</a></p>
-         <i class="badge">Vendeu 12</i>
-         <a class="fa fa-edit"></a>
-      </div>
-    </div><!-- ./ funcionarios -->
+               <a class="fa fa-edit"></a>
+            </div>
+            {% endif %}
+        {% endfor %}
+      </div><!-- ./ funcionarios -->
+    </div>
+    <div class="paginacao">
+      <ul class="pager">
+        {% if users.has_previous %}
+        <li><a href="?page={{ users.previous_page_number }}">Anterior</a></li>
+       {% endif %}
+        <li>Pagina {{ users.number }} de {{ users.paginator.num_pages }}</li>
+        {% if users.has_next %}
+        <li><a href="?page={{ users.next_page_number }}">Proximo</a></li>
+        {% endif %}
+      </ul>
+    </div>
   </div>
  </div>
 {% endblock %}

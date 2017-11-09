@@ -6,12 +6,11 @@ from django.contrib.auth.models import User
 from fornecedor.forms import FornecedorForm
 from fornecedor.models import Fornecedor
 
-
+# paginacao
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def criafuncionario(request):
-
-    user = User.objects.all()
 
     if request.method == 'POST':
         form = FuncionarioForm(request.POST)
@@ -20,9 +19,20 @@ def criafuncionario(request):
             form.save()
             return HttpResponseRedirect('/admin/criar-funcionario/')
     args = {}
+    args['users'] = User.objects.all()
     args.update(csrf(request))
     args['form'] = FuncionarioForm
-    args['users'] = user
+
+    # paginacao
+    paginacao = Paginator(args['users'], 10)
+    page      = request.GET.get('page')
+
+    try:
+        args['users'] = paginacao.page(page)
+    except PageNotAnInteger:
+        args['users'] = paginacao.page(1)
+    except EmptyPage:
+        args['users'] = paginacao.page(paginacao.num_pages)
 
     return render(request, 'funcionario.html', args)
 
