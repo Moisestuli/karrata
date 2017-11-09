@@ -10,33 +10,35 @@
       Block do content
       ------------------------------------------------------------>
 {% block content %}
-    <div class="add-func">
-        {% if form.errors %}
-		    <p class="error">Sorry something was bad try again.</p>
-        {% endif %}
-        <div class="double form-func">
-            <form action="/fornecedor/actualizar/{{ dados.nome }}/" method="post">{% csrf_token %}
-                <div><input type="text" name="nome" value="{{ dados.nome }}" /></div>
-                <div><input type="text" name="telefone" value="{{ dados.telefone }}" /></div>
-                <div><input type="text" name="cidade" value="{{ dados.cidade }}" /></div>
-                <div><input type="submit" value="Editar"></div>
-            </form>
-        </div><!-- ./ form-func -->
-        <div class="double extra-func">
-            <p>Lista do funcionarios</p>
-            {% if fornecedores %}
-             {% for user in fornecedores %}
-             <ul class="users">
-
-
-                        <li><a href="">{{ user.nome }}  </a> <a href="/admin/editar/{{ user.nome }}/">( Editar )</a>
-                            <a href="/fornecedor/eliminar/{{ user.nome }}/"> ( Eliminar )</a></li>
-
-
-
-              </ul>
-              {% endfor %}
-            {% endif %}
-        </div><!-- ./ form-func -->
-    </div><!-- ./ add-func ->
+<div class="container">
+  <div class="row-now">
+    <div class="funcionario-editar">
+      <h2>Editar O funcionario</h2>
+      <div class="form">
+        <form class="form" action="/admin/configuracao/" method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="">Nome Do funcionario</label>
+            <input type="text" class="form-control" name="username" value="{{ fornecedor.nome }}" />
+          </div>
+          <div class="form-group">
+            <label for="">Email Do funcionario</label>
+            <input type="text" class="form-control" name="username" value="{{ fornecedor.email }}" />
+          </div>
+          <div class="form-group">
+            <label for="">Senha Actual</label>
+            <input type="text" class="form-control" name="username" value="{{ fornecedor.cidade }}" />
+          </div>
+          <div class="form-group">
+            <label for="">Nova Senha Actual</label>
+            <input type="text" class="form-control" name="username" value="{{ fornecedor.telefone }}" />
+          </div>
+        </form>
+        <br />
+        <button type="submit" class="btn btn-primary">Actulizar</button>
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

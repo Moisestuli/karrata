@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
-
+from funcionario.forms import FuncionarioForm
 
 def funcionario_eliminar(request, username = None):
 
@@ -10,10 +10,22 @@ def funcionario_eliminar(request, username = None):
 
     return HttpResponseRedirect('/admin/criar-funcionario/')
 
-def funcionario_editar(request, username = None):
-
-    f = get_object_or_404(User, username=username)
+def funcionario_editar(request, pk ):
 
     args = {}
-    args['funcionario'] = f
+
+    args['form'] = FuncionarioForm
+    args['funcionario']  = get_object_or_404(User, pk=pk)
     return render(request, 'funcionario/editar.html', args)
+
+def fornecedor_editar(request):
+    return HttpResponse("forncedor")
+
+
+    """
+    args = {}
+
+    args['form'] = FuncionarioForm
+    args['funcionario']  = get_object_or_404(User, pk=pk)
+    return render(request, 'fornecedor/editar.html', args)
+ """

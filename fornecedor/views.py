@@ -3,7 +3,7 @@ from fornecedor.models import Fornecedor
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from fornecedor.forms import FornecedorForm
-
+from fornecedor.models import Fornecedor
 
 def adiciona_fornecedor(request):
 
@@ -17,18 +17,14 @@ def adiciona_fornecedor(request):
         f.nome = nome
         f.telefone = telefone
         f.cidade = cidade
-
-        if nome == '' or telefone == '' or cidade == '':
-            return HttpResponse('O campo esta vazio, preencha os campos vazios')
-        else:
-            f.save()
+        f.save()
 
         return HttpResponseRedirect('/admin/fornecedor/')
 
 
     args = {}
     args['fornecedores'] = Fornecedor.objects.all()
-
+    args['form'] = FornecedorForm
     return render(request, 'fornecedor/index.html', args)
 
 def fornecedor_eliminar(request, username):
@@ -62,3 +58,8 @@ def fornecedor_actualizar(request , username ):
         return HttpResponseRedirect('/admin/fornecedor/')
 
     return HttpResponse("Nao e seguro")
+
+def fornecedor_editar(request, pk):
+    args = {}
+    args['fornecedor']  = get_object_or_404(Fornecedor, pk=pk)
+    return render(request, 'fornecedor/editar.html', args)

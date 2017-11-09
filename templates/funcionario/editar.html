@@ -5,31 +5,24 @@
 {% block title %}
    Pagina principal
 {% endblock %}
-
+{% load bootstrap %}
 <!---
       Block do content
       ------------------------------------------------------------>
 {% block content %}
-    <div class="add-func">
-        {% if form.errors %}
-		    <p class="error">Sorry something was bad try again.</p>
-        {% endif %}
-        <div class="double form-func">
-            <form action="/admin/fornecedor/" method="post">{% csrf_token %}
-                <div><input type="text" name="nome" value="{{ funcionario.username }}" /></div>
+<div class="container">
+  <div class="row-now">
+    <div class="funcionario-editar">
+      <h2>Editar O funcionario</h2>
+      <div class="form">
+        <form class="form" action="/admin/configuracao/" method="post">
+          {% csrf_token %}
+          {{ form|bootstrap }}
+        </form>
 
-                <div><input type="text" name="telefone" value="{{ funcionario.email }}" /></div>
-
-                <div><input type="text" name="senha1" placeholder="Informe a senha antiga " /></div>
-                <div><input type="text" name="senha2" placeholder="Informe a nova senha " /></div>
-                <div><input type="submit" value="Actualizar"></div>
-            </form>
-        </div><!-- ./ form-func -->
-        <div class="double extra-func">
-            <p>Lista do funcionarios</p>
-            {% if funcionario %}
-
-            {% endif %}
-        </div><!-- ./ form-func -->
-    </div><!-- ./ add-func ->
+        <button type="submit" class="btn btn-primary">Actulizar</button>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
