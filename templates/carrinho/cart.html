@@ -12,28 +12,32 @@
       ------------------------------------------------------------>
 {% block content %}
 
-  <div class="produtos">
-        {% if not tem %}
-        <table>
-            <tr>
-                <th>Produto</th>
-                <th>Quantidade</th>
-                <th>Total Preco</th>
-                <th>Troco</th>
-                <th>Comprar</th>
-            </tr>
-            {% for item in cart %}
-            <tr>
-                <td> | {{ item.product.nome }}  </td>
-                <td> | {{ item.quantity }} | </td>
-                <td> | {{ item.total_price }} | </td>
-                <td> | {{ item.exchange_now }} | </td>
-                <td><a href="/carrinho/remover/{{ item.product.id }}">remover</a></td>
-            </tr>
-            {% endfor %}
-        </table>
+  <div class="container">
+
+    {% if cart %}
+      <table class="table table-bordered">
+        <caption>Carrinho de compra</caption>
+        <thead>
+          <tr>
+            <th>Produto</th>
+            <th>Cliente</th>
+            <th>Quantidade</th>
+            <th>Preco</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for each in cart %}
+          <tr>
+            <td>{{ each.produto }}</td>
+            <td>{{ each.cliente }}</td>
+            <td>{{ each.quantidade }}</td>
+            <td>{{ each.preco }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
       {% else %}
-        <h4>Nao temos nada no carrinho</h4>
+        <p>nao tem dados ainda</p>
       {% endif %}
       <br>
       <br>

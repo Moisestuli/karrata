@@ -47,11 +47,13 @@ INSTALLED_APPS = [
     'category',
     'fornecedor',
     'vender',
-    'carrinho',
     'relatorios',
     'encomenda',
     'cliente',
     'bootstrapform',
+    'carton',
+    'carts',
+
 
 ]
 

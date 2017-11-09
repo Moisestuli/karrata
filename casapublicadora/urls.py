@@ -10,13 +10,13 @@ urlpatterns = [
     url(r'^$', home_page, name='autenticar'),
     url(r'^accounts/', include('autenticacao.urls')),
     url(r'^produto/', include('produtos.urls')),
-    url(r'^carrinho/', include('carrinho.urls')),
     url(r'^admin/', include('administrador.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^fornecedor/', include('fornecedor.urls')),
     url(r'^relatorios/', include('relatorios.urls')),
     url(r'^encomendar/', include('encomenda.urls')),
     url(r'^clientes/', include('cliente.urls')),
+    url(r'^carrinho/', include('carts.urls')),
 ]
 
 if settings.DEBUG:

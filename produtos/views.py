@@ -3,7 +3,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 from produtos.forms import ProdutoAdminForm
 from django.template.context_processors import csrf
 from produtos.models import Produto
-from carrinho.cart import Cart
 from category.models import Category
 from encomenda.models import Encomenda
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -41,27 +40,19 @@ def todos_produtos(request):
 
 def vender_produto(request, produto_slug = None):
 
-    produto = get_object_or_404(Produto, slug=produto_slug)
-    cart = Cart(request)
-    cart.add(produto, produto.preco)
-    return render(request, 'produtos/single.html', dict(cart=Cart(request)))
+    return HttpResponse("ver produto")
 
 def produto_single(request, produto_slug = None):
 
-    args = {}
-    args.update(csrf(request))
-    #args['form'] = VendaAdminForm
-    args['produtos'] = Produto.objects.all()
-    args['produto'] = get_object_or_404(Produto, slug=produto_slug)
-    p = args['produto']
-    args['categories'] = p.categories.filter(is_active=True)
-    args['fornecedores'] = p.fornecedores.filter(is_active=True)
-    args['cart']         = Cart(request)
+    return HttpResponse("produto single")
 
-    return render(request, 'produtos/single.html', args)
+def mostra_carrinho(request, pk):
 
-def mostra_carrinho(request):
-    return HttpResponse("mostra carrino")
+    pk = str(pk)
+    produto = get_object_or_404(Produto, pk= pk)
+
+
+    return HttpResponse("mostra carrino %s" % produto.nome )
 
 def produto_adiciona(request):
 
