@@ -7,6 +7,7 @@ from produtos.models import Produto
 from category.models import Category
 from encomenda.models import Encomenda
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.utils import timezone
 
 def todos_produtos(request):
 
@@ -20,6 +21,7 @@ def todos_produtos(request):
     args = {}
     args.update(csrf(request))
     args['form'] = ProdutoAdminForm
+    args['recentes'] = Produto.objects.all()
     args['formulario'] = EncomendaForm
     args['user'] = request.user
     args['produtos'] = Produto.objects.all()

@@ -22,6 +22,7 @@ class Produto(models.Model):
 
     class Meta:
         verbose_name_plural = 'Produtos'
+        ordering = ("-created_at",)
 
     def __str__(self):
         return self.nome
