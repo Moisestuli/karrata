@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from encomenda.models import Encomenda
 from encomenda.forms import EncomendaForm
 
@@ -8,11 +8,11 @@ def encomendar(request):
     args = {}
 
     if request.method == 'POST':
-        form = EncomendaForm(request.POST, request.FILES)
+        form = EncomendaForm(request.POST)
 
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect( '/encomenda/' )
+            return HttpResponseRedirect( '/produto/todos/' )
 
     args['formulario'] = EncomendaForm
 

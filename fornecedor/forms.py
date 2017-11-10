@@ -7,5 +7,5 @@ class FornecedorForm(forms.ModelForm):
 
     class Meta:
         model = Fornecedor
-        fields = ('nome','telefone','cidade')
+        fields = ('nome','img','telefone','cidade')
 

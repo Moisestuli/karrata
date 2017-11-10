@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from produtos.forms import ProdutoAdminForm
+from encomenda.forms import EncomendaForm
 from django.template.context_processors import csrf
 from produtos.models import Produto
 from category.models import Category
@@ -19,6 +20,7 @@ def todos_produtos(request):
     args = {}
     args.update(csrf(request))
     args['form'] = ProdutoAdminForm
+    args['formulario'] = EncomendaForm
     args['user'] = request.user
     args['produtos'] = Produto.objects.all()
     args['categorias'] = Category.objects.all()

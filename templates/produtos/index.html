@@ -87,7 +87,7 @@
           <form role="form" action="/encomendar/" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
-              {{ formulario }}
+              {{ formulario|bootstrap }}
             </div>
             <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Encomendar</button>
 
@@ -200,7 +200,7 @@
    <div class="comprado-corpo">
     <ul class="categoria">
       {% for each in categorias %}
-      <li><a href="#" >{{ each.nome }}</a> <i class="badge"> 12</i></li>
+      <li><a href="#" >{{ each.nome }}</a></li>
       {% endfor %}
     </ul>
    </div><!-- corpo -->
