@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     'encomenda',
     'cliente',
     'bootstrapform',
-    'carton',
     'carts',
     'configuracao',
 
