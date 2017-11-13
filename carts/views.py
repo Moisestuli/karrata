@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from produtos.models import Produto
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
+from weasyprint import HTML
+from django.template.loader import render_to_string
 from carts.models import Cart
 from cliente.models import Cliente
 from relatorios.models import Relatorio
@@ -100,4 +102,4 @@ def mostra_carrinho(request):
     return render(request, 'carrinho/cart.html', {'cart': cart})
 
 def futurar_agora(request):
-    return HttpResponse('faurar')    
+    return HttpResponse('faurar')
