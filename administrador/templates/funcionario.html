@@ -29,13 +29,13 @@
     <div class="list-func">
         <h2>Funcionarios Activos</h2>
       <div class="funcionarios">
-          {% for user in users %}
+          {% for user in perfil %}
             {% if not user.is_superuser %}
             <div class="profile">
-              <img src="/static/img/2.png" class="img-circle" width="100" height="100" />
-              <p><a href="#">{{ user.username  }}</a></p>
+              <img src="/media/{{ user.imagem }}" class="img-circle" width="100" height="100" />
+              <p><a href="#">{{ user.perfil  }}</a></p>
 
-               <a class="fa fa-edit" href="/admin/configuracao/funcionario/{{ user.id }}/"></a>
+              <!-- <a class="fa fa-edit" href="/admin/configuracao/funcionario/{{ user.perfil.id }}/"></a> -->
             </div>
             {% endif %}
         {% endfor %}<div class="clearfix"></div>

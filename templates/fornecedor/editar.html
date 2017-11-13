@@ -12,31 +12,14 @@
 {% block content %}
 <div class="container">
   <div class="row-now">
-    <div class="funcionario-editar">
-      <h2>Editar O funcionario</h2>
-      <div class="form">
-        <form class="form" action="/admin/configuracao/" method="post">
-          {% csrf_token %}
-          <div class="form-group">
-            <label for="">Nome Do funcionario</label>
-            <input type="text" class="form-control" name="username" value="{{ fornecedor.nome }}" />
-          </div>
-          <div class="form-group">
-            <label for="">Email Do funcionario</label>
-            <input type="text" class="form-control" name="username" value="{{ fornecedor.email }}" />
-          </div>
-          <div class="form-group">
-            <label for="">Senha Actual</label>
-            <input type="text" class="form-control" name="username" value="{{ fornecedor.cidade }}" />
-          </div>
-          <div class="form-group">
-            <label for="">Nova Senha Actual</label>
-            <input type="text" class="form-control" name="username" value="{{ fornecedor.telefone }}" />
-          </div>
-        </form>
-        <br />
-        <button type="submit" class="btn btn-primary">Actulizar</button>
-        <button type="submit" class="btn btn-danger">Eliminar</button>
+    <div class="row-now">
+      <div class="funcionario-editar">
+        <h1>Sobre o Fornecedor</h1>
+
+         <img src="/media/{{ fornecedor.img }}" widt="100" height="100" alt="">
+          <h3>Nome: {{ fornecedor.nome }}</h3>
+          <h3>Cidade: {{fornecedor.cidade }}</h3>
+          <h3>Telefone: {{ fornecedor.telefone }}</h3>
       </div>
     </div>
   </div>

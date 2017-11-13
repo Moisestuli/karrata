@@ -35,10 +35,8 @@ def fornecedor_eliminar(request, username):
 
 
 def fornecedor_editar(request, username = None):
-
-    f = get_object_or_404(Fornecedor, nome=username)
     args = {}
-    args['dados'] = f
+    args['fornecedor'] = get_object_or_404(Fornecedor, nome=username)
     return render(request, 'fornecedor/editar.html', args)
 
 def fornecedor_actualizar(request , username ):

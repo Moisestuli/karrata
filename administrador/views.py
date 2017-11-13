@@ -5,7 +5,7 @@ from django.template.context_processors import csrf
 from django.contrib.auth.models import User
 from fornecedor.forms import FornecedorForm
 from fornecedor.models import Fornecedor
-
+from configuracao.models import Configuracao
 # paginacao
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -20,6 +20,7 @@ def criafuncionario(request):
             return HttpResponseRedirect('/admin/criar-funcionario/')
     args = {}
     args['users'] = User.objects.all()
+    args['perfil'] = Configuracao.objects.all()
     args.update(csrf(request))
     args['form'] = FuncionarioForm
 

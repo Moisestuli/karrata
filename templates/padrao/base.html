@@ -189,14 +189,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<li class="dropdown profile_details_drop">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 									<div class="profile_img">
-										<span class="prfil-img"><i class="fa fa-user" aria-hidden="true"></i></span>
+										<span class="prfil-img"><img src="/media/{{ user.configuracao.imagem }}" style="border-image: round; border-radius: 100%; border: 2px solid #ccc;" width="50" height="50" alt=""></span>
 										<div class="clearfix"></div>
 									</div>
 								</a>
 								<ul class="dropdown-menu drp-mnu">
-									<li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li>
-									<li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li>
-									<li> <a href="#"><i class="fa fa-sign-out"></i> Logout</a> </li>
+									<li> <a href="/admin/"><i class="fa fa-cog"></i> Configuracao</a> </li>
+									<li> <a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Sair</a> </li>
 								</ul>
 							</li>
 						</ul>

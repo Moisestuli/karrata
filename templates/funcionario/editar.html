@@ -13,15 +13,13 @@
 <div class="container">
   <div class="row-now">
     <div class="funcionario-editar">
-      <h2>Editar O funcionario</h2>
-      <div class="form">
-        <form class="form" action="/admin/configuracao/" method="post">
-          {% csrf_token %}
-          {{ form|bootstrap }}
-        </form>
+      <h1>Sobre o funcionario</h1>
 
-        <button type="submit" class="btn btn-primary">Actulizar</button>
-      </div>
+       <img src="/media/{{ perfil.imagem }}" widt="100" height="100" alt="">
+        <h3>Nome: {{ perfil.perfil }}</h3>
+        <h3>Cidade: Lobito</h3>
+        <h3>Telefone: 994 489893849</h3>
+        <h3>Email: {{ perfil.email }}</h3>
     </div>
   </div>
 </div>
