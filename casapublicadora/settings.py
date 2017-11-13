@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'bootstrapform',
     'carts',
     'configuracao',
+    'fatura',
 
 
 ]
