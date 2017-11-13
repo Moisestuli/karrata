@@ -98,3 +98,6 @@ def mostra_carrinho(request):
     cart = Cart.objects.all()
 
     return render(request, 'carrinho/cart.html', {'cart': cart})
+
+def futurar_agora(request):
+    return HttpResponse('faurar')    
