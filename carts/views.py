@@ -1,12 +1,15 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from produtos.models import Produto
 from django.http import HttpResponse, HttpResponseNotFound
+
 from weasyprint import HTML
 from django.template.loader import render_to_string
+from django.core.files.storage import FileSystemStorage
 from carts.models import Cart
 from cliente.models import Cliente
 from relatorios.models import Relatorio
-
+from fatura.models import Fatura
+from django.db.models import Sum, FloatField, Max
 
 def adiciona_carrinho(request, pk):
 
@@ -35,11 +38,15 @@ def processa_carrinho(request):
 
                 # Pega o cliente ja existente
                 a  = Cliente.objects.get(nome=cliente)
+                quantidade   = float(quantidade)
+                prc          = float(p.preco)
+                pagando = quantidade * prc
 
                 # Inseri na tabela Carrinho
                 cart.produto = produto
                 cart.quantidade = quantidade
                 cart.preco = p.preco
+                cart.pagando = pagando
                 cart.funcionario = request.user.username
                 #cart.funcionario = request.user
                 cart.cliente = cliente
@@ -102,4 +109,37 @@ def mostra_carrinho(request):
     return render(request, 'carrinho/cart.html', {'cart': cart})
 
 def futurar_agora(request):
+    args = {}
+
+
+    if request.method == 'POST':
+
+        valor_a_dar = request.POST.get('valor')
+        args['produto'] = Cart.objects.all()
+        args['total'] = Cart.objects.aggregate(Sum('pagando'))
+
+        html_string = render_to_string('carrinho/invoice.html', args)
+
+        html = HTML(string=html_string)
+        html.write_pdf(target='/tmp/carrinho.pdf')
+
+        fs = FileSystemStorage('/tmp')
+
+        with fs.open('carrinho.pdf') as pdf:
+            response = HttpResponse(pdf, content_type='application/pdf')
+            response['Content-Disposition'] = 'inline; filename="carrinho.pdf" '
+
+            args['produto'].delete()
+            
+            return response
+        return response
     return HttpResponse('faurar')
+
+def eliminar_carrinho(request, pk):
+
+    pk = int(pk)
+
+    cart = get_object_or_404(Cart, pk=pk)
+    cart.delete()
+
+    return redirect('/carrinho/ver/')

@@ -26,6 +26,8 @@
                 <th>Funcionario</th>
                 <th>Quantidade</th>
                 <th>Preco</th>
+                <th>Total</th>
+                <th>Eliminar</th>
               </tr>
             </thead>
             <tbody>
@@ -36,17 +38,29 @@
                 <td>{{ each.funcionario }}</td>
                 <td>{{ each.quantidade }}</td>
                 <td>{{ each.preco }}</td>
+                <td>{{ each.pagando }}</td>
+                <td><a href="/carrinho/eliminar/{{ each.id }}/" class="btn btn-danger"> <i class="fa fa-trash-o"></i> </a></td>
               </tr>
               {% endfor %}
             </tbody>
           </table>
+
+          <div class="form">
+            <form  action="/carrinho/futura/" method="post">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="">Valor a entregra</label>
+                <input type="text" name="valor" class="form-control">
+              </div>
+              <input type="submit" class="btn btn-primary" name="" value="Faturar agora ?">
+            </form>
+          </div>
           {% else %}
             <p>Nao tem Item no Carrinho</p>
           {% endif %}
           <br>
           <br>
           <br>
-          <a href="/carrinho/futura/" class="btn btn-primary">Faturar agora ?</a>
           <a href="/produto/todos/" class="btn btn-danger">Voltar ?</a>
         <div>
       </div>
